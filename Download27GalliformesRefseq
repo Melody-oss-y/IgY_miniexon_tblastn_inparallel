@@ -1,0 +1,34 @@
+curl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/mac/datasets'
+
+chmod +x datasets
+sudo mv datasets /usr/local/bin/datasets
+
+datasets download genome taxon \
+  "Afropavo congensis" \
+  "Arborophila gingica" \
+  "Bambusicola thoracicus" \
+  "Callipepla californica" \
+  "Centrocercus minimus" \
+  "Centrocercus urophasianus" \
+  "Chrysolophus amherstiae" \
+  "Crossoptilon crossoptilon" \
+  "Crossoptilon mantchuricum" \
+  "Cyrtonyx montezumae" \
+  "Falcipennis canadensis" \
+  "Lagopus leucura" \
+  "Lophura nycthemera" \
+  "Lyrurus tetrix" \
+  "Oreophasis derbianus" \
+  "Oreortyx pictus" \
+  "Pavo muticus" \
+  "Penelope jacquacu" \
+  "Penelope obscura" \
+  "Perdix hodgsoniae" \
+  "Phasianus colchicus" \
+  "Polyplectron katsumatae" \
+  "Syrmaticus mikado" \
+  "Syrmaticus reevesii" \
+  "Tragopan temminckii" \
+  "Tympanuchus cupido" \
+  "Tympanuchus pallidicinctus" \
+  --reference
