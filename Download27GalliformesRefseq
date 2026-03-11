@@ -3,7 +3,7 @@ curl -o datasets 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/mac/
 chmod +x datasets
 sudo mv datasets /usr/local/bin/datasets
 
-datasets download genome taxon \
+datasets summary genome taxon \
   "Afropavo congensis" \
   "Arborophila gingica" \
   "Bambusicola thoracicus" \
