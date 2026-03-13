@@ -1,0 +1,46 @@
+library(ggtree)
+library(ggtreeExtra)
+library(ggplot2)
+library(phytools)
+library(ggnewscale)
+
+setwd("~/Desktop/BIOL 398/Graphics")
+
+x <- read.tree("pruned_Aves_331.tre")
+metadata <- read.csv("working_BIOL398_spreadsheet(list_of_birds_plus_anseriforms).csv")
+
+Anseriformes <- phytools::findMRCA(x, tip=c("Chauna_torquata", "Aix_galericulata"))
+
+p <- ggtree(x, layout="circular",linewidth = 0.1) %<+% metadata
+g <- rotate_tree(p, angle=155)
+
+c <- g +
+  geom_hilight(node=Anseriformes, fill="#ffc94f", alpha=0.6) +
+  xlim_expand(-7,NA) +
+  
+  #first tip point layer: mini_exon
+  geom_tippoint(
+    aes(color = mini_exon, x = x + 5),
+    size = 0.3
+  ) +
+  scale_colour_manual(
+    name   = "Mini Exon",
+    values = c("present" = "green", "absent" = "#e6446e"),
+    na.translate = FALSE
+  ) +
+  
+  new_scale_colour() +
+  
+  #second tip point layer: TAQGHARF_like
+  geom_tippoint(
+    aes(color = TAQGHARF_like, x = x + 5),   # offset further right
+    size = 0.3
+  ) +
+  scale_colour_manual(
+    name   = "TAQGHARF-like",
+    values = c("present" = "blue", "absent" = "#e6446e", "lack" = "grey"),
+    na.translate = FALSE
+  ) +
+  theme(legend.position = "left",legend.justification = "top") +
+  geom_tiplab2(size = 0.5) +
+  geom_nodepoint(aes(subset = !is.na(mini_exon)))
